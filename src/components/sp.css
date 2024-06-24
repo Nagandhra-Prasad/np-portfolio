@@ -1,0 +1,13 @@
+@keyframes typewriter {
+    from { width: 0; }
+    to { width: 430px; }
+  }
+  
+  @keyframes blink {
+    0%, 100% { border-right-color: rgba(255, 255, 255, 0.75); }
+    50% { border-right-color: transparent; }
+  }
+  
+  .loader {
+    animation: typewriter 4s steps(31) infinite alternate, blink 0.5s steps(20) infinite;
+  }
