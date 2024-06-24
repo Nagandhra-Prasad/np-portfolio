@@ -41,10 +41,10 @@ export const EXPERIENCES = [
 
 export const PROJECTS = [
   {
-    title: "E-Commerce Website",
+    title: "Foodie Website",
     image: project1,
     description:
-      "A fully functional e-commerce website with features like product listing, shopping cart, and user authentication.",
+      "A fully functional Foodie website with features like product listing, shopping cart, and user authentication etc.",
     technologies: ["Bootstrap", "angular", "Node.js","MySQL", "MongoDB","Java","SpringBoot"],
   },
   {
