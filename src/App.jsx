@@ -23,7 +23,7 @@ function App() {
   return (
   
      
-        <div className="absolute top-0 z-[-2] h-screen w-screen overflow-x-hidden text-neutral-300 antialiased selection:bg-cyan-300 selection:text-cyan-900 bg-[radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]">
+        <div className="absolute top-0 z-[-2] h-screen w-screen overflow-x-hidden  antialiased selection:bg-cyan-300 selection:text-cyan-500 bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#63e_100%)]">
         {loading ? (
         <SplashScreen />
       ) : (
@@ -44,3 +44,4 @@ function App() {
   );
 }
 export default App;
+

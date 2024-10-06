@@ -1,7 +1,7 @@
 import project1 from "../assets/projects/project-1.png";
 import project2 from "../assets/projects/project-2.png";
-import project3 from "../assets/projects/project-3.png";
-import project4 from "../assets/projects/project-4.png";
+import project3 from "../assets/projects/project-6.png";
+import project4 from "../assets/projects/project-5.png";
 
 export const HERO_CONTENT = `I am a dedicated aspiring full stack developer with a passion for building robust and scalable web applications. Recently graduated with a degree in Bsc Computer Science, I have focused my learning on Java full stack development, gaining proficiency in technologies such as Angular, Node.js, TypeScript,Java,Spring, Spring Boot, Spring Microservices ,Springboot services, SQL (including MySQL and H2 database), and NoSQL databases (like MongoDB). My goal is to apply my theoretical knowledge and practical skills to create innovative solutions that contribute to business growth and deliver outstanding user experiences.`;
 
@@ -62,11 +62,11 @@ export const PROJECTS = [
     technologies: [ "React", "Tailwind","Framer motion"],
   },
   {
-    title: "Chat Application",
+    title: "Razor Pay Payment API",
     image: project4,
     description:
-      "A platform for creating and publishing blog posts, with features like rich text editing, commenting, and user profiles.",
-    technologies: ["React", "Tailwind", "Express", "MongoDB"],
+      "Implemented Razorpay Payment API integration in a Java Spring Boot application to securely process transactions, enabling seamless and efficient payment handling.",
+    technologies: ["Java", "SpringBoot", "Angular", "Microservices"],
   },
 ];
 

@@ -5,8 +5,8 @@ import {  motion } from "framer-motion"
 const About = () => {
   return (
     <div className=" border-b border-neutral-900 pb-4">
-        <h1 className='my-20 text-center text-4xl text-neutral-500'> About
-            <span className=' text-neutral-500'>me</span>
+        <h1 className='my-20 text-center text-4xl text-200 '> About
+            <span className=' text-200'>me</span>
         </h1>
         <motion.div 
         whileInView={{opacity:1, x:0}}
