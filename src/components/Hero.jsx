@@ -21,7 +21,7 @@ const Hero = () => {
                 variants={container(0)}
                 initial="hidden"
                 animate="visible"
-                className="pb-16 text-6xl   font tracking-tight lg:mt-16 lg:text-8xl bg-gradient-to-r from-pink-500 to via-slate-600 to-purple-700 bg-clip-text text-3xl tracking-tight text-transparent">Nagandhra Prasad Pasupathy
+                className="pb-16 text-6xl   font-light tracking-tight lg:mt-16 lg:text-8xl bg-gradient-to-r from-pink-500 to via-slate-600 to-purple-700 bg-clip-text text-3xl tracking-tight text-transparent">Nagandhra Prasad Pasupathy
                 </motion.h1>
                 <motion.span
                 variants={container(0.5)}

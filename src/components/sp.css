@@ -1,6 +1,6 @@
 @keyframes typewriter {
     from { width: 0; }
-    to { width: 520px; }
+    to { width: 220px; }
   }
   
   @keyframes blink {

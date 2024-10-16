@@ -6,7 +6,10 @@ function SplashScreen() {
       {/* Custom Loader */}
       <div className="loader text-black relative overflow-hidden border-r-4 border-white w-0 animate-typewriter">
       
-        <span className="loader-text text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-600 to-indigo-600 font-bold text-4xl">Creative,Resourceful,Reliable </span>
+        <span className="loader-text text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-600 to-indigo-600 font-bold text-4xl">
+          Creative
+          Resourceful
+          Reliable </span>
       </div>
     </div>
   );
