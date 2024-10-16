@@ -3,10 +3,10 @@ import project2 from "../assets/projects/project-2.png";
 import project3 from "../assets/projects/project-6.png";
 import project4 from "../assets/projects/project-5.png";
 
-export const HERO_CONTENT = `I am a dedicated aspiring full stack developer with a passion for building robust and scalable web applications. Recently graduated with a degree in Bsc Computer Science, I have focused my learning on Java full stack development, gaining proficiency in technologies such as Angular, Node.js, TypeScript,Java,Spring, Spring Boot, Spring Microservices ,Springboot services, SQL (including MySQL and H2 database), and NoSQL databases (like MongoDB). My goal is to apply my theoretical knowledge and practical skills to create innovative solutions that contribute to business growth and deliver outstanding user experiences.`;
+// export const HERO_CONTENT = `I'm an aspiring full stack developer with a strong focus on building efficient and scalable web applications. Recently graduated with a B.Sc. in Computer Science, I specialize in Java full stack development. My skills include Angular, Node.js, TypeScript, Java, Spring Boot, microservices, and both SQL (MySQL, H2) and NoSQL (MongoDB) databases. I’m eager to leverage my knowledge and skills to deliver impactful solutions that drive business success and enhance user experience.`;
 
 export const ABOUT_TEXT = `
-I am an enthusiastic aspiring full stack developer driven by a passion for crafting robust and scalable web applications. Armed with a degree in Bsc Computer Science, my educational journey has centered around mastering Java full stack development. I have acquired proficiency in a range of essential technologies including Angular, Node.js, TypeScript, Spring, Spring Boot, and Spring Microservices. Additionally, I have hands-on experience with both SQL databases like MySQL and H2 database, as well as NoSQL solutions such as MongoDB.`;
+I'm an aspiring full stack developer with a strong focus on building efficient and scalable web applications. Recently graduated with a B.Sc. in Computer Science, I specialize in Java full stack development. My skills include Angular, Node.js, TypeScript, Java, Spring Boot, microservices, and both SQL (MySQL, H2) and NoSQL (MongoDB) databases. I’m eager to leverage my knowledge and skills to deliver impactful solutions that contribute my knowledge to a dynamic team and continue growing as a developer.`;
 
 export const EXPERIENCES = [
   {

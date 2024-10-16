@@ -1,6 +1,6 @@
 @keyframes typewriter {
     from { width: 0; }
-    to { width: 430px; }
+    to { width: 520px; }
   }
   
   @keyframes blink {
@@ -9,5 +9,5 @@
   }
   
   .loader {
-    animation: typewriter 4s steps(31) infinite alternate, blink 0.5s steps(20) infinite;
+    animation: typewriter 4s steps(400) infinite alternate, blink 0.2s steps(300) infinite;
   }
