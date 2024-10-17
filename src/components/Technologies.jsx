@@ -34,7 +34,7 @@ const Technologies = () => {
         whileInView={{opacity:1, y:0}}
         initial={{opacity:0, y:-100}}
         transition={{duration:1.5}}
-        className=" my-20 text-center text-5xl text-200 "> Technologies</motion.h1>
+        className=" my-20 text-center text-5xl text-200 bg-gradient-to-r from-pink-500  to-purple-700 bg-clip-text text-transparent"> Technologies</motion.h1>
         <motion.div 
         whileInView={{opacity:1, x:0}}
         initial={{opacity:0, x:-100}}

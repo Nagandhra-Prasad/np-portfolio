@@ -8,7 +8,7 @@ const Contact = () => {
         whileInView={{opacity:1, y:0}} 
         initial={{opacity:0, y:-100}}
         transition={{duration:0.5}}
-        className=" my-10 text-center text-5xl text-200 ">
+        className=" my-10 text-center text-5xl text-200 bg-gradient-to-r from-pink-800  to-purple-500 bg-clip-text text-transparent ">
             Get In Touch
         </motion.h2>
         <div className=" text-center tracking-tighter">

@@ -18,7 +18,7 @@ const Navbar = () => {
   const handleGithubClick = () => {
     setRedirecting(true);
     setTimeout(() => {
-      window.location.href="https://github.com/ethanwinters05", "_blank";
+      window.location.href="https://github.com/Nagandhra-Prasad", "_blank";
     }, 2000); // Adjust the timeout as needed
   };
 
@@ -30,13 +30,13 @@ const Navbar = () => {
   };
 
   return (
-    <nav className=" mb-10 flex items-center justify-between py-6">
+    <nav className="  flex items-center justify-between py-6">
         <div className="flex flex-shrink-0 items-center">
-            <img className="mx-2  w-32" src={logo} alt="logo" />
+            <img className="mx-2 w-32" src={logo} alt="logo" />
         </div>
-        <div className=" m-8 flex items-center   justify-center gap-4 text-2xl font-sans ">
+        <div className=" m-7 flex items-center   justify-center gap-4 text-2xl font-sans ">
           {redirecting ? (
-            <div className=' text-purple-600 '>Here We Go... </div> // Replace with your loader component if needed
+            <div className=' text-pink-600 '>Here We Go... </div> // Replace with your loader component if needed
           ) : (
             <>
               <a onClick={handleLinkedInClick} style={{ cursor: 'pointer' }}> <FaLinkedin/></a>

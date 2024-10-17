@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SplashScreen from "./components/splashscreen";
-
+// import CustomCursor from "./components/CustomCursor";
 import About from "./components/About"
 import Contact from "./components/Contact"
 import Hero from "./components/Hero"
@@ -35,6 +35,7 @@ function App() {
           <Technologies />
           <Projects />
           <Contact />
+          {/* <CustomCursor /> */}
           </div>
          
         
