@@ -1,3 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-dark-900 text-neutral-200 antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    @apply bg-accent-purple/40 text-white;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-dark-800;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-accent-purple/50 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-accent-purple;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl;
+  }
+
+  .glass-hover {
+    @apply glass transition-all duration-300 hover:bg-white/10 hover:border-accent-purple/30 hover:shadow-lg hover:shadow-accent-purple/10;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-accent-cyan via-accent-purple to-accent-pink bg-clip-text text-transparent;
+  }
+
+  .section-heading {
+    @apply text-4xl md:text-5xl font-display font-bold gradient-text text-center mb-16;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 rounded-xl bg-gradient-to-r from-accent-purple to-accent-cyan text-white font-semibold
+           transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-accent-purple/30 active:scale-95;
+  }
+
+  .btn-outline {
+    @apply px-6 py-3 rounded-xl border border-accent-purple/50 text-accent-purple font-semibold
+           transition-all duration-300 hover:bg-accent-purple/10 hover:border-accent-purple hover:scale-105 active:scale-95;
+  }
+
+  .tilt-card {
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .tilt-card:hover {
+    transform: perspective(800px) rotateX(5deg) rotateY(-5deg) translateY(-8px);
+    box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.25);
+  }
+
+  .tag {
+    @apply inline-block px-3 py-1 text-xs font-medium rounded-full bg-accent-purple/20 text-accent-purple border border-accent-purple/30;
+  }
+
+  .nav-link {
+    @apply relative text-neutral-400 hover:text-white transition-colors duration-300 text-sm font-medium tracking-wide;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-accent-cyan to-accent-purple transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+}

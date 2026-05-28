@@ -1,48 +1,44 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import SplashScreen from "./components/splashscreen";
-// import CustomCursor from "./components/CustomCursor";
-import About from "./components/About"
-import Contact from "./components/Contact"
-import Hero from "./components/Hero"
-import Navbar from "./components/Navbar"
-import Projects from "./components/Projects"
-import Technologies from "./components/Technologies"
+import Scene3D from "./components/Scene3D";
+import About from "./components/About";
+import Contact from "./components/Contact";
+import Hero from "./components/Hero";
+import Navbar from "./components/Navbar";
+import Projects from "./components/Projects";
+import Technologies from "./components/Technologies";
+import Experience from "./components/Experience";
+import Certifications from "./components/Certifications";
 
 function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate a loading delay
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 4100); // 3 seconds delay
-
+    const timer = setTimeout(() => setLoading(false), 3500);
     return () => clearTimeout(timer);
   }, []);
 
-  return (
-  
-     
-        <div className="absolute top-0 z-[-2] h-screen w-screen overflow-x-hidden  antialiased selection:bg-cyan-300 selection:text-cyan-500 bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#63e_100%)]">
-        {loading ? (
-        <SplashScreen />
-      ) : (
-        <div className="container mx-auto px-8">
+  if (loading) {
+    return <SplashScreen />;
+  }
 
-          <Navbar />
+  return (
+    <div className="relative min-h-screen bg-dark-900">
+      <Scene3D />
+      <div className="relative z-10">
+        <Navbar />
+        <main className="max-w-7xl mx-auto px-6 md:px-8">
           <Hero />
           <About />
           <Technologies />
+          <Experience />
           <Projects />
+          <Certifications />
           <Contact />
-          {/* <CustomCursor /> */}
-          </div>
-         
-        
-        
-      )}
+        </main>
+      </div>
     </div>
   );
 }
-export default App;
 
+export default App;

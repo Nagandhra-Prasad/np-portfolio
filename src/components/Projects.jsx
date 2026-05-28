@@ -1,41 +1,67 @@
-import { PROJECTS } from "../constants"
-import {  motion } from "framer-motion"
+import { PROJECTS } from "../constants";
+import { motion } from "framer-motion";
+import { HiExternalLink } from "react-icons/hi";
 
 const Projects = () => {
   return (
-    <div className=" border-b border-neutral-900 pb-4">
-        <motion.h2
-        whileInView={{opacity:1, y:0}}
-        initial={{opacity:0, y:-100}}
-        transition={{duration:0.5}}
-        className=" my-20 text-center text-5xl text-200 bg-gradient-to-r from-pink-800  to-purple-500 bg-clip-text text-transparent">Projects</motion.h2>
-        <div>{PROJECTS.map((project,index)=>(
-            <div key={index} className=" mb-8 flex flex-wrap lg:justify-center">
-            <motion.div 
-            whileInView={{opacity:1, x:0}}
-            initial={{opacity:0, x:-100}}
-            transition={{duration:1}}
-            className="w-full lg:w-1/2">
-            <img src={project.image} width={150} height={150}
-             alt={project.title}
-             className="mb-6 rounded" />   
-            </motion.div> 
-            <motion.div 
-            whileInView={{opacity:1, x:0}}
-            initial={{opacity:0, x:100}}
-            transition={{duration:1}}
-            className=" w-full max-w-xl lg:w-3/4">
-            <h6 className=" mb-2 font-semibold">{project.title}</h6>
-            <p className=" mb-4 text-neutral-600">{project.description}</p>
-            {project.technologies.map((tech,index)=>(
-                <span key={index} className=" mr-2 rounded  bg-neutral-300 px-2 py-2 text-sm font-medium text-pink-500">{tech}</span>
-            ))}
-            </motion.div>
-            </div>
-        ))}
-        </div>
-    </div>
-  )
-}
+    <section id="projects" className="py-24">
+      <motion.h2
+        initial={{ opacity: 0, y: -30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="section-heading"
+      >
+        Featured Projects
+      </motion.h2>
 
-export default Projects
+      <div className="grid md:grid-cols-2 gap-8">
+        {PROJECTS.map((project, index) => (
+          <motion.div
+            key={project.title}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            className="glass-hover tilt-card overflow-hidden group"
+          >
+            <div className="relative overflow-hidden">
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/50 to-transparent opacity-60" />
+              <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <a href={project.link} className="glass p-2 rounded-lg hover:bg-white/20 transition-colors">
+                  <HiExternalLink className="text-white text-lg" />
+                </a>
+              </div>
+            </div>
+
+            <div className="p-6 space-y-3">
+              <div>
+                <h3 className="text-xl font-display font-bold text-white group-hover:text-accent-cyan transition-colors">
+                  {project.title}
+                </h3>
+                {project.subtitle && (
+                  <p className="text-accent-purple text-xs font-medium mt-1">{project.subtitle}</p>
+                )}
+              </div>
+              <p className="text-neutral-400 text-sm leading-relaxed">
+                {project.description}
+              </p>
+              <div className="flex flex-wrap gap-2 pt-2">
+                {project.technologies.map((tech) => (
+                  <span key={tech} className="tag">{tech}</span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default Projects;

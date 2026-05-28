@@ -1,111 +1,76 @@
-import { RiReactjsLine } from "react-icons/ri"
-import { SiAngular } from "react-icons/si";
-import { SiMongodb } from "react-icons/si"
-import { SiMysql } from "react-icons/si";
-import { FaNodeJs } from "react-icons/fa"
-import { FaJava } from "react-icons/fa6";
-import { SiSpringboot } from "react-icons/si";
-import { SiFramer } from "react-icons/si";
+import { motion } from "framer-motion";
+import { SKILLS } from "../constants";
+import { SiAngular, SiMongodb, SiMysql, SiSpringboot, SiPython, SiFastapi, SiTypescript, SiSass, SiDocker, SiGit, SiPostman, SiReactivex, SiOpenai } from "react-icons/si";
+import { FaJava, FaHtml5 } from "react-icons/fa6";
 
+const iconMap = {
+  angular: SiAngular,
+  typescript: SiTypescript,
+  rxjs: SiReactivex,
+  html: FaHtml5,
+  sass: SiSass,
+  java: FaJava,
+  python: SiPython,
+  springboot: SiSpringboot,
+  fastapi: SiFastapi,
+  mongodb: SiMongodb,
+  mysql: SiMysql,
+  ai: SiOpenai,
+  docker: SiDocker,
+  git: SiGit,
+  postman: SiPostman,
+};
 
-import { TbBrandJavascript } from "react-icons/tb";
-
-
-import {  animate, motion } from "framer-motion"
-
-const iconvariants =(duration)=> ({
-    initial:{y:-10},
-    animate:{
-        y:[10, -10],
-    
-    transition :{
-        duration:duration,
-        ease: "linear",
-        repeat:Infinity,
-        repeatType:"reverse"
-    }
-}
-})
+const categories = ["Frontend", "Backend", "Database", "AI & Tools"];
 
 const Technologies = () => {
   return (
-    <div className=" border-b border-purple-800 pb-24">
-        <motion.h1 
-        whileInView={{opacity:1, y:0}}
-        initial={{opacity:0, y:-100}}
-        transition={{duration:1.5}}
-        className=" my-20 text-center text-5xl text-200 bg-gradient-to-r from-pink-500  to-purple-700 bg-clip-text text-transparent"> Technologies</motion.h1>
-        <motion.div 
-        whileInView={{opacity:1, x:0}}
-        initial={{opacity:0, x:-100}}
-        transition={{duration:1.5}}
-        className=" flex flex-wrap items-center justify-center gap-4">
-        <motion.div
-        variants={iconvariants(2.5)}
-        initial="initial"
-        animate="animate"
-        className="rounded-2xl border-4 border-purple-300 p-4">
-            <RiReactjsLine className=" text-7xl text-cyan-400"/>
-        </motion.div>
-        <motion.div 
-        variants={iconvariants(3)}
-        initial="initial"
-        animate="animate"
-        className="rounded-2xl border-4 border-purple-300 p-4">
-            <SiAngular className=" text-red-600 text-7xl"/>
-        </motion.div>
-        <motion.div
-        variants={iconvariants(5)}
-        initial="initial"
-        animate="animate"
-        className="rounded-2xl border-4 border-purple-300 p-4">
-            <SiMongodb className=" text-7xl text-green-500"/>
-        </motion.div>
-        <motion.div
-        variants={iconvariants(2)}
-        initial="initial"
-        animate="animate"
-        className="rounded-2xl border-4 border-purple-300 p-4">
-            <SiMysql className=" text-7xl text-sky-700"/>
-        </motion.div>
-        <motion.div 
-        variants={iconvariants(6)}
-        initial="initial"
-        animate="animate"
-        className="rounded-2xl border-4 border-purple-300 p-4">
-            <FaNodeJs className=" text-7xl text-green-500"/>
-        </motion.div>
-        <motion.div 
-        variants={iconvariants(4)}
-        initial="initial"
-        animate="animate"
-        className="rounded-2xl border-4 border-purple-300 p-4">
-            <FaJava className=" text-7xl text-grey-700"/>
-        </motion.div>
-        <motion.div 
-        variants={iconvariants(4)}
-        initial="initial"
-        animate="animate"
-        className="rounded-2xl border-4 border-purple-300 p-4">
-            <SiSpringboot className=" text-7xl text-sky-700"/>
-        </motion.div>
-        <motion.div 
-        variants={iconvariants(4)}
-        initial="initial"
-        animate="animate"
-        className="rounded-2xl border-4 border-purple-300 p-4">
-            <SiFramer className=" text-7xl text-white-700"/>
-        </motion.div>
-        <motion.div 
-        variants={iconvariants(4)}
-        initial="initial"
-        animate="animate"
-        className="rounded-2xl border-4 border-purple-300 p-4">
-            < TbBrandJavascript className=" text-7xl text-yellow-300"/>
-        </motion.div>
-        </motion.div>
-    </div>
-  )
-}
+    <section id="skills" className="py-24">
+      <motion.h2
+        initial={{ opacity: 0, y: -30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="section-heading"
+      >
+        Skills & Technologies
+      </motion.h2>
 
-export default Technologies
+      {categories.map((category, catIndex) => (
+        <motion.div
+          key={category}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: catIndex * 0.1 }}
+          className="mb-12"
+        >
+          <h3 className="text-lg font-display font-semibold text-neutral-400 mb-6 text-center">
+            {category}
+          </h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {SKILLS.filter((s) => s.category === category).map((skill, index) => {
+              const Icon = iconMap[skill.icon];
+              return (
+                <motion.div
+                  key={skill.name}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  whileHover={{ scale: 1.05 }}
+                  className="glass-hover tilt-card p-6 flex flex-col items-center gap-3 cursor-default group"
+                >
+                  <Icon className={`text-5xl ${skill.color} group-hover:scale-110 transition-transform duration-300`} />
+                  <span className="text-sm font-medium text-neutral-300">{skill.name}</span>
+                </motion.div>
+              );
+            })}
+          </div>
+        </motion.div>
+      ))}
+    </section>
+  );
+};
+
+export default Technologies;
