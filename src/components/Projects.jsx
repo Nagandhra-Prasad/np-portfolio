@@ -1,6 +1,56 @@
-import { PROJECTS } from "../constants";
+import { WORK_PROJECTS, PERSONAL_PROJECTS } from "../constants";
 import { motion } from "framer-motion";
 import { HiExternalLink } from "react-icons/hi";
+
+const ProjectCard = ({ project, index }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5, delay: index * 0.1 }}
+    className="glass-hover tilt-card group"
+  >
+    <div className="p-6 space-y-3">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <h3 className="text-xl font-display font-bold heading-text group-hover:text-accent-cyan transition-colors">
+            {project.title}
+          </h3>
+          {project.subtitle && (
+            <p className="text-accent-purple text-xs font-medium mt-1">{project.subtitle}</p>
+          )}
+        </div>
+        {project.link && project.link !== "#" && (
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="glass p-2 rounded-lg project-link-btn transition-colors shrink-0"
+            aria-label={`View ${project.title}`}
+          >
+            <HiExternalLink className="heading-text text-lg" />
+          </a>
+        )}
+      </div>
+      <p className="body-text text-sm leading-relaxed">
+        {project.description}
+      </p>
+      <div className="flex flex-wrap gap-2 pt-2">
+        {project.technologies.map((tech) => (
+          <span key={tech} className="tag">{tech}</span>
+        ))}
+      </div>
+    </div>
+  </motion.div>
+);
+
+const ProjectGrid = ({ projects, startIndex = 0 }) => (
+  <div className="grid md:grid-cols-2 gap-8">
+    {projects.map((project, index) => (
+      <ProjectCard key={project.title} project={project} index={startIndex + index} />
+    ))}
+  </div>
+);
 
 const Projects = () => {
   return (
@@ -15,51 +65,19 @@ const Projects = () => {
         Featured Projects
       </motion.h2>
 
-      <div className="grid md:grid-cols-2 gap-8">
-        {PROJECTS.map((project, index) => (
-          <motion.div
-            key={project.title}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="glass-hover tilt-card overflow-hidden group"
-          >
-            <div className="relative overflow-hidden">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/50 to-transparent opacity-60" />
-              <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <a href={project.link} className="glass p-2 rounded-lg hover:bg-white/20 transition-colors">
-                  <HiExternalLink className="text-white text-lg" />
-                </a>
-              </div>
-            </div>
+      <ProjectGrid projects={WORK_PROJECTS} />
 
-            <div className="p-6 space-y-3">
-              <div>
-                <h3 className="text-xl font-display font-bold text-white group-hover:text-accent-cyan transition-colors">
-                  {project.title}
-                </h3>
-                {project.subtitle && (
-                  <p className="text-accent-purple text-xs font-medium mt-1">{project.subtitle}</p>
-                )}
-              </div>
-              <p className="text-neutral-400 text-sm leading-relaxed">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-2 pt-2">
-                {project.technologies.map((tech) => (
-                  <span key={tech} className="tag">{tech}</span>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </div>
+      <motion.h3
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="text-2xl md:text-3xl font-display font-bold gradient-text text-center mt-20 mb-12"
+      >
+        Personal Projects
+      </motion.h3>
+
+      <ProjectGrid projects={PERSONAL_PROJECTS} startIndex={WORK_PROJECTS.length} />
     </section>
   );
 };

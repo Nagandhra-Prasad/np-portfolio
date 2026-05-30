@@ -4,7 +4,7 @@ const words = ["Creative", "Resourceful", "Reliable"];
 
 function SplashScreen() {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-dark-900">
+    <div className="fixed inset-0 z-50 flex items-center justify-center page-shell">
       <div className="text-center space-y-8">
         <motion.div
           initial={{ scale: 0 }}

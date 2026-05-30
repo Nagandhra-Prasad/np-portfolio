@@ -21,7 +21,9 @@ function FloatingShape({ position, color, geometry }) {
           color={color}
           wireframe
           transparent
-          opacity={0.4}
+          opacity={0.75}
+          emissive={color}
+          emissiveIntensity={0.6}
         />
       </mesh>
     </Float>
@@ -59,10 +61,10 @@ function ParticleField() {
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.05}
-        color="#8b5cf6"
+        size={0.08}
+        color="#a78bfa"
         transparent
-        opacity={0.6}
+        opacity={0.9}
         sizeAttenuation
       />
     </points>
@@ -72,23 +74,24 @@ function ParticleField() {
 function Scene() {
   return (
     <>
-      <ambientLight intensity={0.2} />
-      <pointLight position={[10, 10, 10]} intensity={0.5} color="#06b6d4" />
-      <pointLight position={[-10, -10, -10]} intensity={0.3} color="#ec4899" />
+      <ambientLight intensity={0.55} />
+      <pointLight position={[10, 10, 10]} intensity={1.2} color="#06b6d4" />
+      <pointLight position={[-10, -10, -10]} intensity={0.8} color="#ec4899" />
+      <pointLight position={[0, 5, 5]} intensity={0.6} color="#8b5cf6" />
 
       <FloatingShape position={[-4, 2, -3]} color="#8b5cf6" geometry="torus" />
       <FloatingShape position={[4, -1, -2]} color="#06b6d4" geometry="octahedron" />
       <FloatingShape position={[0, 3, -5]} color="#ec4899" geometry="icosahedron" />
 
       <ParticleField />
-      <Stars radius={50} depth={50} count={1000} factor={2} saturation={0} fade speed={0.5} />
+      <Stars radius={50} depth={50} count={1200} factor={4} saturation={0.3} fade speed={0.5} />
     </>
   );
 }
 
 const Scene3D = () => {
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none">
+    <div className="fixed inset-0 z-0 pointer-events-none scene-bg">
       <Canvas
         camera={{ position: [0, 0, 8], fov: 60 }}
         gl={{ alpha: true, antialias: true }}

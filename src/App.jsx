@@ -9,10 +9,8 @@ import Projects from "./components/Projects";
 import Technologies from "./components/Technologies";
 import Experience from "./components/Experience";
 import Certifications from "./components/Certifications";
-
 function App() {
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 3500);
     return () => clearTimeout(timer);
@@ -23,7 +21,7 @@ function App() {
   }
 
   return (
-    <div className="relative min-h-screen bg-dark-900">
+    <div className="relative min-h-screen page-shell">
       <Scene3D />
       <div className="relative z-10">
         <Navbar />

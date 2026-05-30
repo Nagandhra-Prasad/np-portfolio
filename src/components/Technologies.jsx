@@ -45,7 +45,7 @@ const Technologies = () => {
           transition={{ duration: 0.5, delay: catIndex * 0.1 }}
           className="mb-12"
         >
-          <h3 className="text-lg font-display font-semibold text-neutral-400 mb-6 text-center">
+          <h3 className="text-lg font-display font-semibold body-text mb-6 text-center">
             {category}
           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
@@ -62,7 +62,7 @@ const Technologies = () => {
                   className="glass-hover tilt-card p-6 flex flex-col items-center gap-3 cursor-default group"
                 >
                   <Icon className={`text-5xl ${skill.color} group-hover:scale-110 transition-transform duration-300`} />
-                  <span className="text-sm font-medium text-neutral-300">{skill.name}</span>
+                  <span className="text-sm font-medium label-text">{skill.name}</span>
                 </motion.div>
               );
             })}

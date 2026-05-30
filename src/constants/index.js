@@ -1,7 +1,3 @@
-import project1 from "../assets/projects/project-1.png";
-import project2 from "../assets/projects/project-2.png";
-import project3 from "../assets/projects/project-6.png";
-
 export const ABOUT_TEXT = `A motivated software developer with 1 year and 5 months of professional experience specializing in building intelligent and scalable web applications. Proficient in developing and integrating Large Language Model (LLM) solutions using Python, creating dynamic front-end applications with Angular, and building robust backend APIs with Spring Boot and FastAPI. Experienced in leading front-end development, component design, API integration, Angular version upgrades, and integrating complex systems including custom Video SDK solutions. Passionate about leveraging AI and modern web technologies to deliver innovative, efficient, and user-centric applications.`;
 
 export const SKILLS = [
@@ -61,11 +57,10 @@ export const EDUCATION = [
   },
 ];
 
-export const PROJECTS = [
+export const WORK_PROJECTS = [
   {
     title: "Drilling AI (Aarya Senior Drilling Engineer)",
     subtitle: "Oil & Gas Platform",
-    image: project1,
     description:
       "AI-driven platform for real-time drilling data visualization. Built WebSocket-based live dashboards, RBAC secure access control, and MongoDB data management with Angular 21.",
     technologies: ["Angular 21", "MongoDB", "WebSockets", "RBAC", "AI"],
@@ -74,19 +69,36 @@ export const PROJECTS = [
   {
     title: "WDDI (Well Delivery Difficulty Index)",
     subtitle: "Oil & Gas Platform",
-    image: project2,
     description:
       "Enterprise-grade scalable UI architecture using Angular 19. Delivered within a 160-day deadline with MongoDB integration and seamless backend API connectivity.",
     technologies: ["Angular 19", "MongoDB", "REST APIs", "Enterprise UI"],
     link: "#",
   },
+];
+
+export const PERSONAL_PROJECTS = [
   {
     title: "Portfolio Website",
     subtitle: "Personal Project",
-    image: project3,
     description:
       "Modern personal portfolio with 3D effects, smooth animations, and responsive design showcasing projects, skills, and professional experience.",
     technologies: ["React", "Tailwind CSS", "Three.js", "Framer Motion"],
+    link: "https://github.com/Nagandhra-Prasad/np-portfolio",
+  },
+  {
+    title: "Bake My Cake",
+    subtitle: "Personal Project",
+    description:
+      "A bakery e-commerce web application with product browsing, cart management, and a responsive UI built with Angular.",
+    technologies: ["Angular", "TypeScript", "HTML", "CSS"],
+    link: "https://github.com/Nagandhra-Prasad/bake-my-cake",
+  },
+  {
+    title: "Foodie Website",
+    subtitle: "Personal Project",
+    description:
+      "A full-stack food discovery and ordering platform with an Angular frontend and Spring Boot backend for managing menus, orders, and user interactions.",
+    technologies: ["Angular", "Spring Boot", "REST APIs", "MySQL"],
     link: "#",
   },
 ];
@@ -136,6 +148,12 @@ export const CONTACT = {
   phoneNo: "+91 90808 57401",
   email: "nagandhrapasupathy@gmail.com",
   website: "https://nagandhraprasad.dev",
+};
+
+export const RESUME = {
+  url: "/resume/Nagandhra-Prasad-Resume.pdf",
+  fileName: "Nagandhra Prasad.pdf",
+  label: "Download CV",
 };
 
 export const SOCIAL_LINKS = {

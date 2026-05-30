@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import profilePic from "../assets/NP.png";
 import { motion } from "framer-motion";
-import { STATS } from "../constants";
-import { HiArrowDown } from "react-icons/hi";
+import { STATS, RESUME } from "../constants";
+import { HiArrowDown, HiDownload } from "react-icons/hi";
 
 const TITLE = "Software Developer";
 
@@ -27,12 +26,12 @@ const Hero = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center pt-32 md:pt-40 pb-20">
-      <div className="w-full flex flex-col xl:grid xl:grid-cols-2 xl:gap-16 xl:items-center">
+      <div className="w-full max-w-3xl">
         <motion.div
           initial={{ opacity: 0, x: -60 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="relative z-10 space-y-6 min-w-0 order-1"
+          className="relative z-10 space-y-6 min-w-0"
         >
           <motion.p
             initial={{ opacity: 0 }}
@@ -43,7 +42,7 @@ const Hero = () => {
             Welcome to my portfolio
           </motion.p>
 
-          <h1 className="text-4xl md:text-5xl xl:text-7xl font-display font-bold leading-tight">
+          <h1 className="text-4xl md:text-5xl xl:text-7xl font-display font-bold leading-tight heading-text">
             Hi, I'm{" "}
             <span className="gradient-text block mt-2">
               Nagandhra Prasad
@@ -51,16 +50,16 @@ const Hero = () => {
           </h1>
 
           <div className="h-14 md:h-16 xl:h-20">
-            <span className="text-xl md:text-3xl xl:text-4xl font-display font-semibold text-neutral-300">
+            <span className="text-xl md:text-3xl xl:text-4xl font-display font-semibold subtle-text">
               I'm{" "}
-              <span className="text-accent-purple">
+              <span className="accent-purple-text">
                 {displayedText}
                 <span className="animate-pulse">|</span>
               </span>
             </span>
           </div>
 
-          <p className="text-neutral-400 text-base md:text-lg max-w-lg leading-relaxed">
+          <p className="body-text text-base md:text-lg max-w-lg leading-relaxed">
             Software developer with 1.5 years of experience at Ibytes Bits and Bots, building
             AI-driven and scalable web applications with Angular, Python, and LLM integrations.
           </p>
@@ -71,6 +70,16 @@ const Hero = () => {
             </a>
             <a href="#contact" className="btn-outline">
               Get In Touch
+            </a>
+            <a
+              href={RESUME.url}
+              download={RESUME.fileName}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-outline flex items-center gap-2"
+            >
+              <HiDownload />
+              {RESUME.label}
             </a>
           </div>
 
@@ -84,34 +93,9 @@ const Hero = () => {
                 className="glass p-3 md:p-4 text-center"
               >
                 <p className="text-xl md:text-3xl font-bold gradient-text">{stat.value}</p>
-                <p className="text-[10px] md:text-sm text-neutral-400 mt-1">{stat.label}</p>
+                <p className="text-[10px] md:text-sm body-text mt-1">{stat.label}</p>
               </motion.div>
             ))}
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, x: 60 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="relative z-0 flex justify-center mt-12 xl:mt-0 order-2 shrink-0"
-        >
-          <div className="relative w-64 sm:w-72 md:w-80 xl:w-96">
-            <div className="absolute inset-0 bg-gradient-to-r from-accent-purple/40 to-accent-cyan/40 rounded-3xl blur-3xl" />
-            <div className="relative glass p-3 rounded-3xl">
-              <div className="rounded-2xl overflow-hidden bg-neutral-800/50 ring-2 ring-accent-purple/30 aspect-square flex items-center justify-center">
-                <img
-                  src={profilePic}
-                  alt="Nagandhra Prasad"
-                  className="block w-full h-full object-contain"
-                />
-              </div>
-              <div className="mt-3 text-center">
-                <span className="inline-block glass px-4 py-2 rounded-xl text-sm font-semibold text-accent-cyan">
-                  Available for work
-                </span>
-              </div>
-            </div>
           </div>
         </motion.div>
       </div>
@@ -121,7 +105,7 @@ const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, y: [0, 10, 0] }}
         transition={{ opacity: { delay: 1.5 }, y: { repeat: Infinity, duration: 2 } }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-neutral-400 hover:text-white transition-colors"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 body-text link-hover transition-colors"
         aria-label="Scroll down"
       >
         <HiArrowDown className="text-3xl" />

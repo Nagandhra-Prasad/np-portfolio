@@ -27,11 +27,11 @@ const Certifications = () => {
           >
             <FaCertificate className="text-3xl text-accent-purple mb-4" />
             <span className="tag mb-3">{cert.type}</span>
-            <h3 className="text-lg font-display font-bold text-white mt-3 leading-snug">
+            <h3 className="text-lg font-display font-bold heading-text mt-3 leading-snug">
               {cert.title}
             </h3>
             <p className="text-accent-cyan text-sm font-medium mt-2">{cert.issuer}</p>
-            <p className="text-neutral-500 text-xs mt-1">{cert.date}</p>
+            <p className="muted-text text-xs mt-1">{cert.date}</p>
           </motion.div>
         ))}
       </div>
