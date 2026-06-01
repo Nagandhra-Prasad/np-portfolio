@@ -1,7 +1,9 @@
 import { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, Stars } from '@react-three/drei';
-function FloatingShape({ position, color, geometry }) {
+import { useTheme } from '../context/ThemeContext';
+
+function FloatingShape({ position, color, geometry, isDark }) {
   const meshRef = useRef();
 
   useFrame((state) => {
@@ -21,16 +23,16 @@ function FloatingShape({ position, color, geometry }) {
           color={color}
           wireframe
           transparent
-          opacity={0.75}
+          opacity={isDark ? 0.75 : 0.92}
           emissive={color}
-          emissiveIntensity={0.6}
+          emissiveIntensity={isDark ? 0.6 : 0.08}
         />
       </mesh>
     </Float>
   );
 }
 
-function ParticleField() {
+function ParticleField({ isDark }) {
   const count = 200;
   const positions = useMemo(() => {
     const pos = new Float32Array(count * 3);
@@ -61,35 +63,43 @@ function ParticleField() {
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.08}
-        color="#a78bfa"
+        size={isDark ? 0.08 : 0.1}
+        color={isDark ? '#a78bfa' : '#6d28d9'}
         transparent
-        opacity={0.9}
+        opacity={isDark ? 0.9 : 0.75}
         sizeAttenuation
       />
     </points>
   );
 }
 
-function Scene() {
+function Scene({ isDark }) {
+  const shapeColors = isDark
+    ? { torus: '#8b5cf6', octahedron: '#06b6d4', icosahedron: '#ec4899' }
+    : { torus: '#5b21b6', octahedron: '#0e7490', icosahedron: '#be185d' };
+
   return (
     <>
-      <ambientLight intensity={0.55} />
-      <pointLight position={[10, 10, 10]} intensity={1.2} color="#06b6d4" />
-      <pointLight position={[-10, -10, -10]} intensity={0.8} color="#ec4899" />
-      <pointLight position={[0, 5, 5]} intensity={0.6} color="#8b5cf6" />
+      <ambientLight intensity={isDark ? 0.55 : 0.85} />
+      <pointLight position={[10, 10, 10]} intensity={isDark ? 1.2 : 0.9} color="#06b6d4" />
+      <pointLight position={[-10, -10, -10]} intensity={isDark ? 0.8 : 0.6} color="#ec4899" />
+      <pointLight position={[0, 5, 5]} intensity={isDark ? 0.6 : 0.45} color="#8b5cf6" />
 
-      <FloatingShape position={[-4, 2, -3]} color="#8b5cf6" geometry="torus" />
-      <FloatingShape position={[4, -1, -2]} color="#06b6d4" geometry="octahedron" />
-      <FloatingShape position={[0, 3, -5]} color="#ec4899" geometry="icosahedron" />
+      <FloatingShape position={[-4, 2, -3]} color={shapeColors.torus} geometry="torus" isDark={isDark} />
+      <FloatingShape position={[4, -1, -2]} color={shapeColors.octahedron} geometry="octahedron" isDark={isDark} />
+      <FloatingShape position={[0, 3, -5]} color={shapeColors.icosahedron} geometry="icosahedron" isDark={isDark} />
 
-      <ParticleField />
-      <Stars radius={50} depth={50} count={1200} factor={4} saturation={0.3} fade speed={0.5} />
+      <ParticleField isDark={isDark} />
+      {isDark && (
+        <Stars radius={50} depth={50} count={1200} factor={4} saturation={0.3} fade speed={0.5} />
+      )}
     </>
   );
 }
 
 const Scene3D = () => {
+  const { isDark } = useTheme();
+
   return (
     <div className="fixed inset-0 z-0 pointer-events-none scene-bg">
       <Canvas
@@ -97,7 +107,7 @@ const Scene3D = () => {
         gl={{ alpha: true, antialias: true }}
         style={{ background: 'transparent' }}
       >
-        <Scene />
+        <Scene isDark={isDark} />
       </Canvas>
     </div>
   );
