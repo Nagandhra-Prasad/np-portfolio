@@ -1,42 +1,39 @@
-import { CERTIFICATIONS } from "../constants";
 import { motion } from "framer-motion";
-import { FaCertificate } from "react-icons/fa";
+import { CERTIFICATIONS, getSectionNum } from "../constants";
 
-const Certifications = () => {
-  return (
-    <section id="certifications" className="py-24">
-      <motion.h2
-        initial={{ opacity: 0, y: -30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="section-heading"
-      >
-        Certifications
-      </motion.h2>
+const Certifications = () => (
+  <section id="certifications" className="py-24 lg:py-32">
+    <motion.h2
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      className="section-heading"
+    >
+      <span><span className="section-num">{getSectionNum('certifications')}.</span> Certifications</span>
+    </motion.h2>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-        {CERTIFICATIONS.map((cert, index) => (
-          <motion.div
-            key={cert.title}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: index * 0.08 }}
-            className="glass-hover p-6 rounded-2xl tilt-card"
-          >
-            <FaCertificate className="text-3xl text-accent-purple mb-4" />
-            <span className="tag mb-3">{cert.type}</span>
-            <h3 className="text-lg font-display font-bold heading-text mt-3 leading-snug">
-              {cert.title}
-            </h3>
-            <p className="text-accent-cyan text-sm font-medium mt-2">{cert.issuer}</p>
-            <p className="muted-text text-xs mt-1">{cert.date}</p>
-          </motion.div>
-        ))}
-      </div>
-    </section>
-  );
-};
+    <div className="space-y-4">
+      {CERTIFICATIONS.map((cert, i) => (
+        <motion.div
+          key={cert.title}
+          initial={{ opacity: 0, x: -16 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: i * 0.04 }}
+          className="exp-card flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
+        >
+          <div>
+            <h3 className="text-heading font-medium">{cert.title}</h3>
+            <p className="text-slate text-sm mt-1">{cert.issuer}</p>
+          </div>
+          <div className="flex items-center gap-3 shrink-0">
+            <span className="tag">{cert.type}</span>
+            <span className="font-mono text-xs text-slate">{cert.date}</span>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  </section>
+);
 
 export default Certifications;

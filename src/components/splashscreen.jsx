@@ -1,41 +1,27 @@
 import { motion } from "framer-motion";
 
-const words = ["Creative", "Resourceful", "Reliable"];
-
 function SplashScreen() {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center page-shell">
-      <div className="text-center space-y-8">
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.5, type: "spring" }}
-          className="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-accent-purple to-accent-cyan flex items-center justify-center"
-        >
-          <span className="text-3xl font-display font-bold text-white">NP</span>
-        </motion.div>
-
-        <div className="space-y-2">
-          {words.map((word, i) => (
-            <motion.p
-              key={word}
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5 + i * 0.4, duration: 0.5 }}
-              className="text-3xl md:text-5xl font-display font-bold gradient-text"
-            >
-              {word}
-            </motion.p>
-          ))}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.4 }}
+        className="text-center"
+      >
+        <div className="w-14 h-14 mx-auto rounded-xl bg-[var(--accent)] flex items-center justify-center mb-6">
+          <span className="text-xl font-display font-bold text-white dark:text-[#030303]">NP</span>
         </div>
-
+        <p className="font-display text-lg font-semibold heading-text tracking-tight">
+          Nagandhra Prasad
+        </p>
         <motion.div
-          initial={{ width: 0 }}
-          animate={{ width: "100%" }}
-          transition={{ delay: 2, duration: 1.5, ease: "easeInOut" }}
-          className="h-1 bg-gradient-to-r from-accent-purple via-accent-cyan to-accent-pink rounded-full max-w-xs mx-auto"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ delay: 0.3, duration: 0.8 }}
+          className="h-0.5 w-24 mx-auto mt-6 bg-[var(--accent)] origin-left"
         />
-      </div>
+      </motion.div>
     </div>
   );
 }

@@ -1,20 +1,24 @@
 import { useState, useEffect } from 'react';
-import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa6";
-import { HiMenuAlt3, HiX, HiDownload, HiSun, HiMoon } from "react-icons/hi";
+import { HiMenuAlt3, HiX, HiSun, HiMoon } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
-import { NAV_LINKS, SOCIAL_LINKS, RESUME } from "../constants";
+import { NAV_LINKS } from "../constants";
 import { useTheme } from "../context/ThemeContext";
 
-const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
+const Navbar = ({ activeSection = 'home' }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const [lastY, setLastY] = useState(0);
   const { isDark, toggleTheme } = useTheme();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    const onScroll = () => {
+      const y = window.scrollY;
+      setVisible(y < 80 || y < lastY);
+      setLastY(y);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [lastY]);
 
   const handleNavClick = (href) => {
     setMobileOpen(false);
@@ -22,129 +26,80 @@ const Navbar = () => {
   };
 
   return (
-    <motion.nav
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'glass py-3 mx-4 mt-4 rounded-2xl' : 'py-4 backdrop-blur-sm nav-shell'
-      }`}
+    <motion.header
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: visible ? 0 : -80, opacity: visible ? 1 : 0 }}
+      transition={{ duration: 0.3 }}
+      className="fixed top-0 left-0 right-0 z-50 px-4 pt-4"
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <a href="#home" onClick={() => handleNavClick('#home')} className="flex items-center gap-2 shrink-0">
-          <span className="font-display text-2xl md:text-3xl font-bold gradient-text tracking-widest">NP</span>
+      <nav className="nav-pill max-w-3xl mx-auto px-4 py-2 flex items-center justify-between">
+        <a
+          href="#home"
+          onClick={(e) => { e.preventDefault(); handleNavClick('#home'); }}
+          className="font-display font-bold text-sm heading-text tracking-tight"
+        >
+          NP
         </a>
 
-        <div className="hidden md:flex items-center gap-6">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-              className="nav-link"
-            >
-              {link.label}
-            </a>
-          ))}
-          <a
-            href={RESUME.url}
-            download={RESUME.fileName}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="resume-btn"
-          >
-            <HiDownload />
-            Resume
-          </a>
+        <div className="hidden md:flex items-center gap-0.5">
+          {NAV_LINKS.filter((l) => l.href !== '#home').map((link) => {
+            const id = link.href.replace('#', '');
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
+                className={`nav-link ${activeSection === id ? 'nav-link-active' : ''}`}
+              >
+                {link.label}
+              </a>
+            );
+          })}
         </div>
 
-        <div className="hidden md:flex items-center gap-3 text-xl">
+        <div className="flex items-center gap-2">
           <button
             type="button"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              toggleTheme();
-            }}
-            className="theme-toggle relative z-[60] cursor-pointer"
-            aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+            onClick={toggleTheme}
+            className="theme-toggle"
+            aria-label={isDark ? 'Light mode' : 'Dark mode'}
           >
-            {isDark ? <HiSun className="text-lg" /> : <HiMoon className="text-lg" />}
-          </button>
-          <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="icon-muted">
-            <FaLinkedin />
-          </a>
-          <a href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer" className="social-icon">
-            <FaGithub />
-          </a>
-          <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="social-icon social-icon-pink">
-            <FaInstagram />
-          </a>
-        </div>
-
-        <div className="md:hidden flex items-center gap-3">
-          <button
-            type="button"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              toggleTheme();
-            }}
-            className="theme-toggle relative z-[60] cursor-pointer"
-            aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-          >
-            {isDark ? <HiSun className="text-lg" /> : <HiMoon className="text-lg" />}
+            {isDark ? <HiSun size={16} /> : <HiMoon size={16} />}
           </button>
           <button
-            className="text-2xl heading-text"
+            className="md:hidden theme-toggle"
             onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
+            aria-label="Menu"
           >
-            {mobileOpen ? <HiX /> : <HiMenuAlt3 />}
+            {mobileOpen ? <HiX size={16} /> : <HiMenuAlt3 size={16} />}
           </button>
         </div>
-      </div>
+      </nav>
 
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass mx-4 mt-2 rounded-xl overflow-hidden"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            className="nav-pill max-w-3xl mx-auto mt-2 p-3 md:hidden"
           >
-            <div className="flex flex-col p-4 gap-3">
+            <div className="flex flex-col gap-1">
               {NAV_LINKS.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-                  className="subtle-text link-hover py-2 transition-colors"
+                  className="nav-link text-left"
                 >
                   {link.label}
                 </a>
               ))}
-              <a
-                href={RESUME.url}
-                download={RESUME.fileName}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setMobileOpen(false)}
-                className="flex items-center gap-2 accent-purple-text hover:text-accent-cyan py-2 transition-colors font-semibold"
-              >
-                <HiDownload />
-                {RESUME.label}
-              </a>
-              <div className="flex gap-4 pt-2 text-xl divider-border border-t">
-                <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="icon-muted"><FaLinkedin /></a>
-                <a href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer" className="social-icon"><FaGithub /></a>
-                <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="social-icon social-icon-pink"><FaInstagram /></a>
-              </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </motion.header>
   );
 };
 

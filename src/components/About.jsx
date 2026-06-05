@@ -1,52 +1,41 @@
-import { ABOUT_TEXT } from "../constants";
 import { motion } from "framer-motion";
+import { ABOUT_TEXT, getSectionNum } from "../constants";
 
-const About = () => {
-  return (
-    <section id="about" className="py-24">
-      <motion.h2
-        initial={{ opacity: 0, y: -30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="section-heading"
-      >
-        About Me
-      </motion.h2>
+const About = () => (
+  <section id="about" className="py-24 lg:py-32">
+    <motion.h2
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      className="section-heading"
+    >
+      <span><span className="section-num">{getSectionNum('about')}.</span> About Me</span>
+    </motion.h2>
 
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="max-w-4xl mx-auto space-y-6"
-      >
-        <h3 className="text-2xl md:text-3xl font-display font-bold heading-text">
-          Turning ideas into{" "}
-          <span className="gradient-text">digital reality</span>
-        </h3>
-        <p className="body-text leading-relaxed text-lg">
-          {ABOUT_TEXT}
-        </p>
-
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 pt-4">
-          {[
-            { label: "Location", value: "Chennai, India" },
-            { label: "Education", value: "M.Sc. CS — Anna University" },
-            { label: "Company", value: "Ibytes Bits and Bots" },
-            { label: "Experience", value: "1 yr 5 mo" },
-            { label: "Focus", value: "AI & Angular Development" },
-            { label: "Status", value: "Open to Opportunities" },
-          ].map((item) => (
-            <div key={item.label} className="glass p-4 rounded-xl">
-              <p className="text-xs muted-text uppercase tracking-wider">{item.label}</p>
-              <p className="text-sm font-semibold label-text mt-1">{item.value}</p>
-            </div>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="grid md:grid-cols-[1.4fr_1fr] gap-12 lg:gap-20 items-center"
+    >
+      <div className="space-y-4 text-slate leading-relaxed min-w-0">
+        <p>{ABOUT_TEXT}</p>
+        <p>Here are a few technologies I've been working with recently:</p>
+        <ul className="grid grid-cols-2 gap-x-6 gap-y-2 mt-4 font-mono text-sm text-slate-light">
+          {['Angular', 'TypeScript', 'Python', 'FastAPI', 'MongoDB', 'LLM / AI'].map((tech) => (
+            <li key={tech} className="skill-item">{tech}</li>
           ))}
+        </ul>
+      </div>
+
+      <div className="about-visual mx-auto md:mx-0 md:ml-auto w-full max-w-[320px]">
+        <div className="about-card-offset" aria-hidden="true" />
+        <div className="about-card">
+          <span className="font-mono text-7xl font-bold text-accent/25 select-none">NP</span>
         </div>
-      </motion.div>
-    </section>
-  );
-};
+      </div>
+    </motion.div>
+  </section>
+);
 
 export default About;

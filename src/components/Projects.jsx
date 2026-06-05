@@ -1,85 +1,85 @@
-import { WORK_PROJECTS, PERSONAL_PROJECTS } from "../constants";
+import { WORK_PROJECTS, PERSONAL_PROJECTS, getSectionNum } from "../constants";
 import { motion } from "framer-motion";
-import { HiExternalLink } from "react-icons/hi";
+import { HiArrowTopRightOnSquare } from "react-icons/hi2";
+import TiltCard from "./TiltCard";
 
-const ProjectCard = ({ project, index }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 40 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5, delay: index * 0.1 }}
-    className="glass-hover tilt-card group"
-  >
-    <div className="p-6 space-y-3">
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <h3 className="text-xl font-display font-bold heading-text group-hover:text-accent-cyan transition-colors">
-            {project.title}
-          </h3>
-          {project.subtitle && (
-            <p className="text-accent-purple text-xs font-medium mt-1">{project.subtitle}</p>
-          )}
-        </div>
-        {project.link && project.link !== "#" && (
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="glass p-2 rounded-lg project-link-btn transition-colors shrink-0"
-            aria-label={`View ${project.title}`}
-          >
-            <HiExternalLink className="heading-text text-lg" />
-          </a>
-        )}
-      </div>
-      <p className="body-text text-sm leading-relaxed">
-        {project.description}
-      </p>
-      <div className="flex flex-wrap gap-2 pt-2">
-        {project.technologies.map((tech) => (
-          <span key={tech} className="tag">{tech}</span>
-        ))}
-      </div>
-    </div>
-  </motion.div>
-);
+const ALL_PROJECTS = [
+  ...WORK_PROJECTS.map((p) => ({ ...p, featured: true })),
+  ...PERSONAL_PROJECTS.map((p) => ({ ...p, featured: false })),
+];
 
-const ProjectGrid = ({ projects, startIndex = 0 }) => (
-  <div className="grid md:grid-cols-2 gap-8">
-    {projects.map((project, index) => (
-      <ProjectCard key={project.title} project={project} index={startIndex + index} />
-    ))}
-  </div>
-);
+const ProjectRow = ({ project, index }) => {
+  const reversed = index % 2 !== 0;
+  const hasLink = project.link && project.link !== '#';
+  const initial = project.title.charAt(0);
 
-const Projects = () => {
   return (
-    <section id="projects" className="py-24">
-      <motion.h2
-        initial={{ opacity: 0, y: -30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="section-heading"
-      >
-        Featured Projects
-      </motion.h2>
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-80px' }}
+      transition={{ duration: 0.5 }}
+      className={`grid lg:grid-cols-12 gap-6 lg:gap-8 items-center mb-20 last:mb-0 ${
+        reversed ? 'lg:[&>*:first-child]:order-2' : ''
+      }`}
+    >
+      <div className={`lg:col-span-7 ${reversed ? 'lg:col-start-6' : ''}`}>
+        <p className="font-mono text-xs text-green mb-2">
+          {project.featured ? 'Featured Project' : 'Project'}
+        </p>
+        <h3 className="text-2xl font-bold text-heading mb-4 hover:text-green transition-colors">
+          {hasLink ? (
+            <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 group">
+              {project.title}
+              <HiArrowTopRightOnSquare className="text-green opacity-0 group-hover:opacity-100 transition-opacity" size={18} />
+            </a>
+          ) : project.title}
+        </h3>
+        <div className="exp-card mb-4">
+          <p className="text-slate text-sm leading-relaxed">{project.description}</p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {project.technologies.map((tech) => (
+            <span key={tech} className="tag">{tech}</span>
+          ))}
+        </div>
+      </div>
 
-      <ProjectGrid projects={WORK_PROJECTS} />
-
-      <motion.h3
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="text-2xl md:text-3xl font-display font-bold gradient-text text-center mt-20 mb-12"
-      >
-        Personal Projects
-      </motion.h3>
-
-      <ProjectGrid projects={PERSONAL_PROJECTS} startIndex={WORK_PROJECTS.length} />
-    </section>
+      <div className={`lg:col-span-5 ${reversed ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
+        <TiltCard maxTilt={8}>
+          <a
+            href={hasLink ? project.link : '#projects'}
+            target={hasLink ? '_blank' : undefined}
+            rel={hasLink ? 'noopener noreferrer' : undefined}
+            className="block project-box aspect-video project-box-3d"
+          >
+            <div className="project-overlay" />
+            <div className="project-box-inner">{initial}</div>
+            <div className="project-shine" />
+          </a>
+        </TiltCard>
+      </div>
+    </motion.div>
   );
 };
+
+const Projects = () => (
+  <section id="projects" className="py-24 lg:py-32">
+    <motion.h2
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      className="section-heading"
+    >
+      <span><span className="section-num">{getSectionNum('projects')}.</span> Some Things I've Built</span>
+    </motion.h2>
+
+    <div>
+      {ALL_PROJECTS.map((project, i) => (
+        <ProjectRow key={project.title} project={project} index={i} />
+      ))}
+    </div>
+  </section>
+);
 
 export default Projects;

@@ -162,12 +162,21 @@ export const SOCIAL_LINKS = {
   instagram: "https://www.instagram.com/nagendra_prasad05/",
 };
 
-export const NAV_LINKS = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Certifications", href: "#certifications" },
-  { label: "Contact", href: "#contact" },
+/** Page scroll order — nav numbers are derived from this list */
+export const PAGE_SECTIONS = [
+  { id: "home", label: "Home", href: "#home" },
+  { id: "about", label: "About", href: "#about" },
+  { id: "experience", label: "Experience", href: "#experience" },
+  { id: "projects", label: "Projects", href: "#projects" },
+  { id: "skills", label: "Skills", href: "#skills" },
+  { id: "certifications", label: "Certifications", href: "#certifications" },
+  { id: "contact", label: "Contact", href: "#contact" },
 ];
+
+export const NAV_LINKS = PAGE_SECTIONS.map(({ label, href }) => ({ label, href }));
+
+export const getSectionNum = (id) => {
+  const index = PAGE_SECTIONS.findIndex((s) => s.id === id);
+  if (index <= 0) return null;
+  return String(index).padStart(2, "0");
+};
