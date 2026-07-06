@@ -10,7 +10,7 @@ function SplashScreen() {
         className="text-center"
       >
         <div className="w-14 h-14 mx-auto rounded-xl bg-[var(--accent)] flex items-center justify-center mb-6">
-          <span className="text-xl font-display font-bold text-white dark:text-[#030303]">NP</span>
+          <span className="text-xl font-display font-bold text-white">NP</span>
         </div>
         <p className="font-display text-lg font-semibold heading-text tracking-tight">
           Nagandhra Prasad

@@ -19,9 +19,10 @@ const MobileNav = ({ activeSection }) => {
         <a
           href="#home"
           onClick={(e) => { e.preventDefault(); scrollTo('#home'); }}
-          className="font-mono text-lg font-bold text-accent"
+          className="font-mono text-lg font-bold italic tracking-tight"
         >
-          NP
+          <span className="about-monogram-n">N</span>
+          <span className="about-monogram-p">P</span>
         </a>
         <div className="flex items-center gap-3">
           <button type="button" onClick={toggleTheme} className="theme-btn" aria-label="Toggle theme">

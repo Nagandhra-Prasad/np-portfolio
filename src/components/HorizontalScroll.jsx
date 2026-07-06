@@ -30,9 +30,9 @@ const HorizontalScroll = ({ children, className = '', hint = 'Scroll horizontall
   return (
     <div className={`relative group/scroll ${className}`}>
       <p className="text-xs muted-text text-center mb-4 flex items-center justify-center gap-2">
-        <span className="inline-block w-8 h-px bg-gradient-to-r from-transparent to-accent-purple/50" />
+        <span className="inline-block w-8 h-px bg-gradient-to-r from-transparent to-accent/50" />
         {hint}
-        <span className="inline-block w-8 h-px bg-gradient-to-l from-transparent to-accent-purple/50" />
+        <span className="inline-block w-8 h-px bg-gradient-to-l from-transparent to-accent-secondary/50" />
       </p>
 
       {canScrollLeft && (

@@ -7,36 +7,38 @@
 @layer base {
   html[data-theme='dark'] {
     color-scheme: dark;
-    --navy: #110f18;
-    --navy-light: #1a1728;
-    --navy-lighter: #2c2642;
-    --slate: #9490ad;
-    --slate-light: #b8b4cc;
-    --slate-lightest: #e8e6f2;
-    --heading: #f2f0fa;
-    --accent: #f0a060;
-    --accent-secondary: #c4b5fd;
-    --accent-tint: rgba(240, 160, 96, 0.12);
-    --accent-glow: rgba(240, 160, 96, 0.18);
-    --shadow: rgba(8, 6, 18, 0.65);
-    --project-overlay: rgba(26, 23, 40, 0.88);
+    --navy: #070a10;
+    --navy-light: #0e1219;
+    --navy-lighter: #1a2233;
+    --slate: #8a94a6;
+    --slate-light: #a8b2c4;
+    --slate-lightest: #dce3ee;
+    --heading: #f0f4fa;
+    --accent: #1c69d4;
+    --accent-secondary: #e7222e;
+    --accent-tint: rgba(28, 105, 212, 0.14);
+    --accent-glow: rgba(28, 105, 212, 0.24);
+    --accent-secondary-glow: rgba(231, 34, 46, 0.14);
+    --shadow: rgba(4, 6, 12, 0.72);
+    --project-overlay: rgba(14, 18, 25, 0.9);
   }
 
   html[data-theme='light'] {
     color-scheme: light;
-    --navy: #f6f4fb;
+    --navy: #f0f3f8;
     --navy-light: #ffffff;
-    --navy-lighter: #e4dff0;
-    --slate: #5e5878;
-    --slate-light: #453f5e;
-    --slate-lightest: #1c1630;
-    --heading: #1c1630;
-    --accent: #c45c26;
-    --accent-secondary: #7c3aed;
-    --accent-tint: rgba(196, 92, 38, 0.1);
-    --accent-glow: rgba(196, 92, 38, 0.14);
-    --shadow: rgba(28, 22, 48, 0.1);
-    --project-overlay: rgba(246, 244, 251, 0.9);
+    --navy-lighter: #d4dce8;
+    --slate: #566070;
+    --slate-light: #3a4454;
+    --slate-lightest: #121820;
+    --heading: #0c1018;
+    --accent: #0066b1;
+    --accent-secondary: #c41e3a;
+    --accent-tint: rgba(0, 102, 177, 0.1);
+    --accent-glow: rgba(0, 102, 177, 0.16);
+    --accent-secondary-glow: rgba(196, 30, 58, 0.1);
+    --shadow: rgba(12, 16, 24, 0.09);
+    --project-overlay: rgba(240, 243, 248, 0.92);
   }
 
   html { scroll-behavior: smooth; scroll-padding-top: 100px; }
@@ -68,7 +70,7 @@
     min-height: 100vh;
     background-image:
       radial-gradient(ellipse 50% 40% at 100% 0%, var(--accent-glow), transparent),
-      radial-gradient(ellipse 40% 30% at 0% 100%, rgba(196, 181, 253, 0.06), transparent);
+      radial-gradient(ellipse 40% 30% at 0% 100%, var(--accent-secondary-glow), transparent);
   }
 
   .scene-3d-bg {
@@ -110,6 +112,17 @@
     z-index: 0;
   }
 
+  .m-sport-sidebar-badge {
+    width: fit-content;
+  }
+
+  .m-sport-sidebar-logo {
+    display: block;
+    width: 150px;
+    height: auto;
+    object-fit: contain;
+  }
+
   .hero-3d-frame canvas {
     position: relative;
     z-index: 1;
@@ -145,11 +158,38 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: border-color 0.25s ease;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
   }
 
   .about-card:hover {
     border-color: var(--accent);
+    box-shadow:
+      inset 0 0 0 1px color-mix(in srgb, var(--accent-secondary) 35%, transparent),
+      0 0 32px var(--accent-tint);
+  }
+
+  .about-monogram {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(3.5rem, 12vw, 4.5rem);
+    font-weight: 800;
+    font-style: italic;
+    letter-spacing: -0.05em;
+    line-height: 1;
+  }
+
+  .about-monogram-n {
+    color: var(--accent);
+    text-shadow: 0 0 28px var(--accent-glow);
+  }
+
+  .about-monogram-p {
+    color: var(--accent-secondary);
+    text-shadow: 0 0 28px var(--accent-secondary-glow);
+  }
+
+  .about-card:hover .about-monogram-n,
+  .about-card:hover .about-monogram-p {
+    filter: brightness(1.08);
   }
 
   .tilt-3d {
@@ -300,11 +340,19 @@
     overflow: hidden;
     background: var(--accent-tint);
     border: 2px solid transparent;
-    transition: border-color 0.25s ease;
+    transition: border-color 0.3s ease, background 0.35s ease, box-shadow 0.3s ease;
     box-shadow: 0 10px 30px -15px var(--shadow);
   }
 
-  .project-box:hover { border-color: var(--accent); }
+  .project-box:hover {
+    border-color: color-mix(in srgb, var(--accent) 55%, var(--accent-secondary));
+    background: linear-gradient(
+      125deg,
+      var(--accent) 0%,
+      #4d9fff 42%,
+      var(--accent-secondary) 100%
+    );
+  }
 
   .project-box-inner {
     position: absolute;
@@ -317,19 +365,25 @@
     font-weight: 700;
     color: var(--accent);
     opacity: 0.15;
-    transition: opacity 0.25s ease;
+    transition: opacity 0.3s ease, color 0.3s ease;
   }
 
-  .project-box:hover .project-box-inner { opacity: 0.25; }
+  .project-box:hover .project-box-inner {
+    opacity: 0.35;
+    color: #ffffff;
+  }
 
   .project-overlay {
     position: absolute;
     inset: 0;
     background: var(--project-overlay);
-    transition: background 0.25s ease;
+    transition: background 0.35s ease, opacity 0.35s ease;
   }
 
-  .project-box:hover .project-overlay { background: transparent; }
+  .project-box:hover .project-overlay {
+    background: transparent;
+    opacity: 0;
+  }
 
   .skill-item {
     position: relative;
@@ -437,8 +491,8 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #4ade80;
-    box-shadow: 0 0 8px rgba(74, 222, 128, 0.5);
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent-glow);
     animation: pulse-soft 2.5s ease-in-out infinite;
   }
 

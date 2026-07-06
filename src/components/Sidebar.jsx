@@ -3,7 +3,7 @@ import { PAGE_SECTIONS, SOCIAL_LINKS, CONTACT, getSectionNum } from '../constant
 import { FaGithub, FaLinkedin, FaInstagram, FaCopy, FaCheck } from 'react-icons/fa6';
 import { HiSun, HiMoon } from 'react-icons/hi';
 import { useTheme } from '../context/ThemeContext';
-
+import msportLogo from '../assets/msport-logo.png';
 const SIDEBAR_LINKS = PAGE_SECTIONS.filter((s) => s.id !== 'home');
 
 const Sidebar = ({ activeSection }) => {
@@ -23,12 +23,23 @@ const Sidebar = ({ activeSection }) => {
   return (
     <aside className="hidden lg:flex flex-col justify-between fixed top-0 left-0 w-[320px] h-screen px-8 py-10 border-r border-[var(--navy-lighter)] bg-[var(--navy)]/90 backdrop-blur-md z-40">
       <div>
+        <div className="m-sport-sidebar-badge mb-5">
+          <img
+            src={msportLogo}
+            alt="M Sport"
+            className="m-sport-sidebar-logo"
+            width={150}
+            height={51}
+            draggable={false}
+          />
+        </div>
         <a
           href="#home"
           onClick={(e) => { e.preventDefault(); scrollTo('#home'); }}
-          className="font-mono text-2xl font-bold text-accent tracking-tight"
+          className="font-mono text-2xl font-bold tracking-tight italic"
         >
-          NP
+          <span className="about-monogram-n">N</span>
+          <span className="about-monogram-p">P</span>
         </a>
         <p className="mt-2 text-sm text-slate font-medium">Nagandhra Prasad</p>
         <p className="text-xs text-slate mt-0.5">Software Developer</p>

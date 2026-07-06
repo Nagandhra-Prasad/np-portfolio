@@ -31,7 +31,10 @@ const About = () => (
       <div className="about-visual mx-auto md:mx-0 md:ml-auto w-full max-w-[320px]">
         <div className="about-card-offset" aria-hidden="true" />
         <div className="about-card">
-          <span className="font-mono text-7xl font-bold text-accent/25 select-none">NP</span>
+          <span className="about-monogram select-none" aria-hidden="true">
+            <span className="about-monogram-n">N</span>
+            <span className="about-monogram-p">P</span>
+          </span>
         </div>
       </div>
     </motion.div>

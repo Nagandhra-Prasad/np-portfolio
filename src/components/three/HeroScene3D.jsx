@@ -3,30 +3,30 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, MeshDistortMaterial, Sphere, Torus, PresentationControls } from '@react-three/drei';
 import { useTheme } from '../../context/ThemeContext';
 
-const SATURN_PALETTE = {
+const M_SPORT_PALETTE = {
   dark: {
-    planet: '#f0a060',
-    ring: '#c4b5fd',
-    ringOuter: '#f0a060',
-    emissivePlanet: 0.25,
-    emissiveRing: 0.35,
-    emissiveOuter: 0.2,
-    ringOpacity: 0.8,
-    outerOpacity: 0.45,
-    metalness: 0.85,
-    roughness: 0.2,
+    planet: '#1c69d4',
+    ring: '#e7222e',
+    ringOuter: '#4d9fff',
+    emissivePlanet: 0.28,
+    emissiveRing: 0.38,
+    emissiveOuter: 0.18,
+    ringOpacity: 0.82,
+    outerOpacity: 0.48,
+    metalness: 0.88,
+    roughness: 0.18,
   },
   light: {
-    planet: '#c9924a',
-    ring: '#6e62c4',
-    ringOuter: '#b87850',
-    emissivePlanet: 0.1,
-    emissiveRing: 0.15,
-    emissiveOuter: 0.08,
-    ringOpacity: 0.88,
-    outerOpacity: 0.6,
-    metalness: 0.5,
-    roughness: 0.38,
+    planet: '#0066b1',
+    ring: '#c41e3a',
+    ringOuter: '#1c69d4',
+    emissivePlanet: 0.12,
+    emissiveRing: 0.18,
+    emissiveOuter: 0.1,
+    ringOpacity: 0.9,
+    outerOpacity: 0.55,
+    metalness: 0.55,
+    roughness: 0.35,
   },
 };
 
@@ -84,7 +84,7 @@ function HeroObject({ palette }) {
 
 const HeroScene3D = () => {
   const { isDark } = useTheme();
-  const palette = SATURN_PALETTE[isDark ? 'dark' : 'light'];
+  const palette = M_SPORT_PALETTE[isDark ? 'dark' : 'light'];
 
   return (
     <div className="hero-3d-wrap pointer-events-auto">

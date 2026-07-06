@@ -81,8 +81,8 @@ const Scene3D = () => {
   const [scrollY, setScrollY] = useState(0);
 
   const colors = isDark
-    ? { primary: '#f0a060', secondary: '#c4b5fd' }
-    : { primary: '#c45c26', secondary: '#7c3aed' };
+    ? { primary: '#1c69d4', secondary: '#e7222e' }
+    : { primary: '#0066b1', secondary: '#c41e3a' };
 
   useEffect(() => {
     const onScroll = () => {

@@ -29,7 +29,7 @@ function Crystal({ isDark }) {
           distortion={0.15}
           distortionScale={0.2}
           temporalDistortion={0.1}
-          color={isDark ? '#a78bfa' : '#7c3aed'}
+          color={isDark ? '#4d9fff' : '#0066b1'}
         />
       </Icosahedron>
     </Float>
@@ -47,8 +47,8 @@ const HeroScene = () => {
         style={{ background: 'transparent' }}
       >
         <ambientLight intensity={isDark ? 0.5 : 0.8} />
-        <directionalLight position={[4, 4, 4]} intensity={isDark ? 1.2 : 0.9} color="#c4b5fd" />
-        <pointLight position={[-3, 2, 2]} intensity={0.6} color="#06b6d4" />
+        <directionalLight position={[4, 4, 4]} intensity={isDark ? 1.2 : 0.9} color="#1c69d4" />
+        <pointLight position={[-3, 2, 2]} intensity={0.6} color="#e7222e" />
         <Environment preset="city" />
         <Crystal isDark={isDark} />
       </Canvas>
