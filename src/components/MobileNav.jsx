@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { PAGE_SECTIONS, getSectionNum } from '../constants';
 import { HiMenuAlt3, HiX, HiSun, HiMoon } from 'react-icons/hi';
 import { useTheme } from '../context/ThemeContext';
+import msportLogo from '../assets/msport-logo.png';
 
 const MobileNav = ({ activeSection }) => {
   const [open, setOpen] = useState(false);
@@ -19,10 +20,20 @@ const MobileNav = ({ activeSection }) => {
         <a
           href="#home"
           onClick={(e) => { e.preventDefault(); scrollTo('#home'); }}
-          className="font-mono text-lg font-bold italic tracking-tight"
+          className="flex items-center gap-3 min-w-0"
         >
-          <span className="about-monogram-n">N</span>
-          <span className="about-monogram-p">P</span>
+          <img
+            src={msportLogo}
+            alt="M Sport"
+            className="m-sport-mobile-logo shrink-0"
+            width={100}
+            height={34}
+            draggable={false}
+          />
+          <span className="font-mono text-lg font-bold italic tracking-tight">
+            <span className="about-monogram-n">N</span>
+            <span className="about-monogram-p">P</span>
+          </span>
         </a>
         <div className="flex items-center gap-3">
           <button type="button" onClick={toggleTheme} className="theme-btn" aria-label="Toggle theme">

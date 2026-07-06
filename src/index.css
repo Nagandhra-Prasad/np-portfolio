@@ -123,6 +123,13 @@
     object-fit: contain;
   }
 
+  .m-sport-mobile-logo {
+    display: block;
+    width: 100px;
+    height: auto;
+    object-fit: contain;
+  }
+
   .hero-3d-frame canvas {
     position: relative;
     z-index: 1;
